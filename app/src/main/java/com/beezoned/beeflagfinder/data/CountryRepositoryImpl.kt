@@ -15,7 +15,8 @@ class AssetCountryDataSource(private val context: Context) {
         return (0 until array.length()).mapNotNull { i ->
             val o = array.getJSONObject(i)
             val continent = Continent.fromDisplayName(o.getString("continent")) ?: return@mapNotNull null
-            Country(o.getString("code"), o.getString("name"), continent)
+            val clues = o.optJSONArray("clues")?.let { a -> (0 until a.length()).map { a.getString(it) } }.orEmpty()
+            Country(o.getString("code"), o.getString("name"), continent, clues)
         }
     }
 

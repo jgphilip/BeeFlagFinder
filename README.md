@@ -10,6 +10,8 @@ An Android quiz game where you guess the country a flag belongs to. Built with K
 
 On the guess screen you see the flag, type the country name and submit. A banner tells you if you were right, and you can skip or move on to the next flag. Score and streak are tracked per session. Answers are case, accent and punctuation insensitive (e.g. `cote d ivoire` matches "Côte d'Ivoire").
 
+**Clues:** every wrong answer reveals the next clue (region and language, then capital, then first letter and name length). After the 4th mistake you get a "you have run out of clues" message. Clues are generated into `countries.json` by the asset script.
+
 ## Architecture
 
 MVVM with Clean Architecture in a single module:

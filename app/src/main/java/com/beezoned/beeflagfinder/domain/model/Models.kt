@@ -19,4 +19,5 @@ data class Country(
     val code: String,
     val name: String,
     val continent: Continent,
+    val clues: List<String> = emptyList(),
 )

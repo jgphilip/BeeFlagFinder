@@ -89,6 +89,7 @@ fun GuessScreen(viewModel: GuessViewModel, onBack: () -> Unit, modifier: Modifie
                         enabled = state.answer.isNotBlank() && state.result != AnswerResult.CORRECT,
                     )
                     ResultBanner(state.result, country.name)
+                    CluesCard(state.revealedClues, state.outOfClues)
                     val solved = state.result == AnswerResult.CORRECT
                     GameButton(
                         title = if (solved) "Next flag" else "Skip",

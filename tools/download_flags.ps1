@@ -14,16 +14,40 @@ $continents = [ordered]@{
 }
 
 $names = Invoke-RestMethod 'https://flagcdn.com/en/codes.json'
+$details = @{}
+$datasetUrl = 'https://raw.githubusercontent.com/mledoze/countries/master/countries.json'
+foreach ($d in (Invoke-RestMethod $datasetUrl)) { $details[$d.cca2.ToLower()] = $d }
+
+function New-Clues($code, $name) {
+    $d = $details[$code]
+    $clues = @()
+    $where = if ($d.subregion) { $d.subregion } else { $d.region }
+    $langs = @(if ($d.languages) { $d.languages.PSObject.Properties.Value })
+    $clue1 = "It is located in $where."
+    if ($langs.Count -gt 0) { $clue1 += " Official language(s): $($langs[0..([Math]::Min(2, $langs.Count - 1))] -join ', ')." }
+    $clues += $clue1
+
+    $capital = if ($d.capital) { $d.capital[0] } else { $null }
+    if (-not $capital) { $clues += "Its area is about $([int]$d.area) square kilometres." }
+    elseif ($capital -like "*$name*") { $clues += "Its capital city shares its name with the country." }
+    else { $clues += "Its capital city is $capital." }
+
+    $letters = ($name -replace '[^A-Za-z]', '').Length
+    $clues += "The name starts with '$($name.Substring(0, 1))' and has $letters letters."
+    return $clues
+}
+
 $list = @()
 foreach ($c in $continents.Keys) {
     foreach ($code in $continents[$c].Split(' ')) {
         $name = $names.$code
         if (-not $name) { throw "No name for $code" }
+        if (-not $details.ContainsKey($code)) { throw "No details for $code" }
         $file = Join-Path $flagDir "$code.png"
         if (-not (Test-Path $file)) {
             Invoke-WebRequest "https://flagcdn.com/w640/$code.png" -OutFile $file
         }
-        $list += [pscustomobject]@{ code = $code; name = $name; continent = $c }
+        $list += [pscustomobject]@{ code = $code; name = $name; continent = $c; clues = @(New-Clues $code $name) }
     }
 }
 $list = $list | Sort-Object name

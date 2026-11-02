@@ -24,7 +24,14 @@ data class GuessUiState(
     val result: AnswerResult = AnswerResult.NONE,
     val score: Int = 0,
     val streak: Int = 0,
-)
+    val mistakes: Int = 0,
+) {
+    val revealedClues: List<String>
+        get() = country?.clues.orEmpty().take(mistakes)
+
+    val outOfClues: Boolean
+        get() = country != null && mistakes > country.clues.size
+}
 
 class GuessViewModel(
     private val mode: GameMode,
@@ -65,7 +72,7 @@ class GuessViewModel(
                 it.copy(result = AnswerResult.CORRECT, score = it.score + 1, streak = it.streak + 1)
             }
         } else {
-            _state.update { it.copy(result = AnswerResult.WRONG, streak = 0) }
+            _state.update { it.copy(result = AnswerResult.WRONG, streak = 0, mistakes = it.mistakes + 1) }
         }
     }
 
@@ -76,6 +83,7 @@ class GuessViewModel(
                 answer = "",
                 streak = if (it.result == AnswerResult.CORRECT) it.streak else 0,
                 result = AnswerResult.NONE,
+                mistakes = 0,
             )
         }
     }
