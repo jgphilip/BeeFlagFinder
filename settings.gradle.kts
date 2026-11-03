@@ -24,4 +24,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "BeeFlagFinder"
 include(":app")
+include(":auth")
  

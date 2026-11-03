@@ -1,6 +1,7 @@
 package com.beezoned.beeflagfinder
 
 import android.app.Application
+import com.beezoned.auth.AuthModule
 import com.beezoned.beeflagfinder.data.AssetCountryDataSource
 import com.beezoned.beeflagfinder.data.CountryRepositoryImpl
 import com.beezoned.beeflagfinder.domain.repository.CountryRepository
@@ -19,9 +20,12 @@ class AppContainer(app: Application) {
 class BeeFlagApp : Application() {
     lateinit var container: AppContainer
         private set
+    lateinit var authModule: AuthModule
+        private set
 
     override fun onCreate() {
         super.onCreate()
         container = AppContainer(this)
+        authModule = AuthModule(this)
     }
 }

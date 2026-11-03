@@ -46,3 +46,8 @@ Requires Android Studio with a JDK (the bundled JBR works) and the Android SDK.
 ```
 
 Min SDK 26, target SDK 37.
+
+## Authentication
+
+Sign-up/sign-in (Google, Meta, email) lives in the reusable `:auth` library module built on Firebase. See [auth/README.md](auth/README.md).
+

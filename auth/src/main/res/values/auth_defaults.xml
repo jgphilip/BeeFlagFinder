@@ -1,0 +1,6 @@
+<resources>
+    <!-- Placeholders: override these in the host app's strings.xml to enable Facebook login. -->
+    <string name="facebook_app_id" translatable="false">0</string>
+    <string name="facebook_client_token" translatable="false">0</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb0</string>
+</resources>

@@ -20,7 +20,7 @@ private const val CONTINENTS = "continents"
 private const val GUESS = "guess/{mode}?continent={continent}"
 
 @Composable
-fun AppNavHost(container: AppContainer) {
+fun AppNavHost(container: AppContainer, userLabel: String, onSignOut: () -> Unit) {
     val nav = rememberNavController()
 
     NavHost(nav, startDestination = HOME) {
@@ -29,6 +29,8 @@ fun AppNavHost(container: AppContainer) {
                 onRandom = { nav.navigate("guess/${GameMode.RANDOM.name}") },
                 onContinent = { nav.navigate(CONTINENTS) },
                 onAlphabetical = { nav.navigate("guess/${GameMode.ALPHABETICAL.name}") },
+                userLabel = userLabel,
+                onSignOut = onSignOut,
             )
         }
         composable(CONTINENTS) {

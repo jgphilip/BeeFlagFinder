@@ -1,0 +1,31 @@
+<resources>
+    <string name="auth_title_sign_up">Create your account</string>
+    <string name="auth_title_sign_in">Welcome back</string>
+    <string name="auth_subtitle">Sign up to save your progress</string>
+    <string name="auth_continue_google">Continue with Google</string>
+    <string name="auth_continue_facebook">Continue with Meta</string>
+    <string name="auth_or_email">or use email</string>
+    <string name="auth_email">Email</string>
+    <string name="auth_password">Password</string>
+    <string name="auth_show_password">Show</string>
+    <string name="auth_hide_password">Hide</string>
+    <string name="auth_sign_up">Sign up</string>
+    <string name="auth_sign_in">Sign in</string>
+    <string name="auth_have_account">Already have an account? Sign in</string>
+    <string name="auth_no_account">New here? Create an account</string>
+    <string name="auth_forgot_password">Forgot password?</string>
+    <string name="auth_reset_sent">Password reset email sent. Check your inbox.</string>
+    <string name="auth_sign_out">Sign out</string>
+    <string name="auth_not_configured_title">Firebase is not set up</string>
+    <string name="auth_not_configured_body">Add google-services.json to the app module and rebuild.</string>
+
+    <string name="auth_error_invalid_email">Enter a valid email address.</string>
+    <string name="auth_error_weak_password">Password must be at least 6 characters.</string>
+    <string name="auth_error_email_in_use">An account with this email already exists. Try signing in.</string>
+    <string name="auth_error_invalid_credentials">Incorrect email or password.</string>
+    <string name="auth_error_user_not_found">No account found for this email.</string>
+    <string name="auth_error_other_provider">This email is already registered with a different sign-in method.</string>
+    <string name="auth_error_network">Network error. Check your connection and try again.</string>
+    <string name="auth_error_not_configured">This sign-in method is not configured.</string>
+    <string name="auth_error_unknown">Something went wrong. Please try again.</string>
+</resources>

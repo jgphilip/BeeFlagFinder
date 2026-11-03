@@ -3,6 +3,11 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 }
 
+// Applied only once google-services.json has been added, so the project builds without it.
+if (file("google-services.json").exists()) {
+    apply(plugin = "com.google.gms.google-services")
+}
+
 android {
     namespace = "com.beezoned.beeflagfinder"
     compileSdk {
@@ -37,6 +42,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":auth"))
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3)
